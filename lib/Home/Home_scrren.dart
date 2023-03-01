@@ -5,15 +5,12 @@ import 'package:flutter/material.dart';
 class Home_scrren extends StatefulWidget {
   const Home_scrren({Key? key}) : super(key: key);
 
-
-
   @override
   State<Home_scrren> createState() => _Home_scrrenState();
 }
 
 class _Home_scrrenState extends State<Home_scrren> {
-
-  int a=0,b=0,c=0,d=0,e=0,f=0;
+  int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0;
 
   List l1 = [
     Colors.cyan,
@@ -35,109 +32,112 @@ class _Home_scrrenState extends State<Home_scrren> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        color: Color(0xffFFFFFF),
+      body: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            //Text
             Text(
-              "Color Palette\n  Generator",
+              "Color Palette \n   Generator",
               style: TextStyle(
-                fontSize: 20,
                 color: Color(0xff3BB3F9),
+                fontSize: 25,
+                fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 30),
-            Container(
-              height: 304,
-              width: 100,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                border: Border.all(color: Colors.black,width: 2),
-              ),
-              child: Column(
-                children: [
-                  // Plate(l1[a]),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: l1[a],
-                      borderRadius: BorderRadius.only(topLeft: Radius.circular(10),topRight: Radius.circular(10)),
+            //Box
+            Column(
+              children: [
+                Container(
+                  height: 75,
+                  width: 125,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(15),
+                      topRight: Radius.circular(15),
                     ),
+                    color: l1[a],
                   ),
-                  Plate(l1[b]),
-                  Plate(l1[c]),
-                  Plate(l1[d]),
-                  Plate(l1[e]),
-                  // Plate(l1[f]),
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    decoration: BoxDecoration(
-                      color: l1[f],
-                      borderRadius: BorderRadius.only(bottomLeft: Radius.circular(10),bottomRight: Radius.circular(10)),
+                ),
+                colorbox(l1[b]),
+                colorbox(l1[c]),
+                colorbox(l1[d]),
+                colorbox(l1[e]),
+                Container(
+                  height: 75,
+                  width: 125,
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                      bottomLeft: Radius.circular(15),
+                      bottomRight: Radius.circular(15),
                     ),
+                    color: l1[f],
                   ),
+                ),
+              ],
+            ),
+            //Generate
+            InkWell(
+              onTap: () {
 
-                ],
+                setState(() {
+                  Random rnd = Random();
+                  a = rnd.nextInt(14);
+                  b = rnd.nextInt(14);
+                  while(b==a)
+                    {
+                      b = rnd.nextInt(14);
+                    }
+                  c = rnd.nextInt(14);
+                  while(c==b || c==a)
+                    {
+                      c = rnd.nextInt(14);
+                    }
+                  d = rnd.nextInt(14);
+                  while(d==c || d==b || d==a)
+                    {
+                      d = rnd.nextInt(14);
+                    }
+                  e = rnd.nextInt(14);
+                  while(e==d || e==c || e==b || e==a)
+                    {
+                      e = rnd.nextInt(14);
+                    }
+                  f = rnd.nextInt(14);
+                  while(f==e || e==d || e==c || e==b || e==a)
+                    {
+                      f = rnd.nextInt(14);
+                    }
+                });
+              },
+              child: Container(
+                height: 50,
+                width: 250,
+                decoration: BoxDecoration(
+                  border: Border.all(
+                    width: 3,
+                    color: Color(0xff3BB3F9),
+                  ),
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                alignment: Alignment.center,
+                child: Text(
+                  "Generate",
+                  style: TextStyle(color: Color(0xff3BB3F9), fontSize: 25),
+                ),
               ),
             ),
-            SizedBox(height: 30),
-            ElevatedButton(onPressed: (){
-              setState(() {
-                Random r = Random();
-                a = r.nextInt(12);
-                // b = r.nextInt(12);
-                // c = r.nextInt(12);
-                // d = r.nextInt(12);
-                // e = r.nextInt(12);
-                // f = r.nextInt(12);
-
-                b = r.nextInt(12);
-                while(a==b)
-                {
-                  b = r.nextInt(12);
-                }
-                c = r.nextInt(12);
-                while(c==a || c==b)
-                {
-                  c = r.nextInt(12);
-                };
-                d = r.nextInt(12);
-                while(d==a || b==d || c==d)
-                {
-                  d = r.nextInt(12);
-                };
-                e = r.nextInt(12);
-                while(a==e || b==e || c==e || d==e)
-                {
-                  e = r.nextInt(12);
-                };
-                f = r.nextInt(12);
-                while(a==f || b==f || c==f || d==f || e==f)
-                {
-                  f = r.nextInt(12);
-                };
-
-              });
-            }, child: Text("Generate",style: TextStyle(
-                fontSize: 20,color: Color(0xffD8E6F4)
-            ),),),
           ],
         ),
       ),
     );
   }
 
-  Widget Plate(Color c1)
-  {
+  Widget colorbox(Color l1) {
     return Container(
-      height: 50,
-      width: double.infinity,
-      color: c1,
+      height: 75,
+      width: 125,
+      color: l1,
     );
   }
 }
